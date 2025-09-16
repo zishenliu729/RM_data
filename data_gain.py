@@ -35,10 +35,10 @@ scene.rx_array = scene.tx_array
 rm_solver = RadioMapSolver()
 
 
-displacement_vec_x_p = [10,0,0]
-displacement_vec_x_n = [-10,0,0]
-displacement_vec_y_p = [0,10,0]
-displacement_vec_y_n = [0,-10,0]
+displacement_vec_x_p = [8,0,0]
+displacement_vec_x_n = [-8,0,0]
+displacement_vec_y_p = [0,8,0]
+displacement_vec_y_n = [0,-8,0]
 num_displacements = 2
 image_width = 256
 image_height = 256
