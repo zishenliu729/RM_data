@@ -3,7 +3,57 @@ import matplotlib
 import matplotlib.pyplot as plt
 import cv2
 import drjit as dr
+import os
 
+def count_subfolders_with_os(folder_path):
+    """使用os模块统计子文件夹数量"""
+    try:
+        # 检查路径是否存在且是一个目录
+        if not os.path.exists(folder_path):
+            raise FileNotFoundError(f"路径不存在: {folder_path}")
+        if not os.path.isdir(folder_path):
+            raise NotADirectoryError(f"不是一个目录: {folder_path}")
+        
+        # 统计子文件夹数量
+        count = 0
+        for item in os.listdir(folder_path):
+            item_path = os.path.join(folder_path, item)
+            if os.path.isdir(item_path):
+                count += 1
+        return count
+    except Exception as e:
+        print(f"错误: {e}")
+        return -1
+
+def cars_movement(scene,displacement_vec):
+    j= 1
+    formatted_num = f"{j:03d}"
+    a = scene.get(f"mesh-car_x_p_{formatted_num}")
+    b = scene.get(f"mesh-car_x_n_{formatted_num}")
+    c = scene.get(f"mesh-car_y_p_{formatted_num}")
+    d = scene.get(f"mesh-car_y_n_{formatted_num}")
+    while a is not None or b is not None or c is not None or d is not None:
+
+        # Compute and render a coverage map at 0.5m above the ground
+            
+
+        j += 1
+        formatted_num = f"{j:03d}"
+        a = scene.get(f"mesh-car_x_p_{formatted_num}")
+        b = scene.get(f"mesh-car_x_n_{formatted_num}")
+        c = scene.get(f"mesh-car_y_p_{formatted_num}")
+        d = scene.get(f"mesh-car_y_n_{formatted_num}")
+
+        if a != None:
+            scene.get(f"mesh-car_x_p_{formatted_num}").position += displacement_vec["x_p"]
+        if b != None:
+            scene.get(f"mesh-car_x_n_{formatted_num}").position += displacement_vec["x_n"]
+        if c != None:
+            scene.get(f"mesh-car_y_p_{formatted_num}").position += displacement_vec["y_p"]
+        if d != None:
+            scene.get(f"mesh-car_y_n_{formatted_num}").position += displacement_vec["y_n"]
+
+    return scene
 
 def process_masks(rm_mask, building_mask, car_mask):
     """
