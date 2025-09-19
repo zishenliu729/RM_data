@@ -103,8 +103,8 @@ for idx in range(1,num_scenes+1):
                     num_samples=1024,
                     rm_vmin=-140)
         
-        # scene = util.cars_movement(scene, displacement_vec)
-        scene = util.cars_desity_change(scene, radio=0.3)
+        scene = util.cars_movement(scene, displacement_vec)
+        # scene = util.cars_desity_change(scene, radio=0.3)
         
         
 
