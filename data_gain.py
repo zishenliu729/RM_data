@@ -46,7 +46,7 @@ for idx in range(1,num_scenes+1):
             
   
     
-    scene.add(Transmitter("tx", position=[4,18,3], orientation=[np.pi,0,0]))
+    scene.add(Transmitter("tx", position=[4,18,1.5], orientation=[np.pi,0,0]))
     scene.tx_array = PlanarArray(num_rows=1, num_cols=1, pattern="tr38901", polarization="V")
     scene.rx_array = scene.tx_array
 
