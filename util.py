@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import cv2
 import drjit as dr
 import os
-
+import random
 def count_subfolders_with_os(folder_path):
     """使用os模块统计子文件夹数量"""
     try:
@@ -53,6 +53,20 @@ def cars_movement(scene,displacement_vec):
         if d != None:
             scene.get(f"mesh-car_y_n_{formatted_num}").position += displacement_vec["y_n"]
 
+    return scene
+
+def cars_desity_change(scene,radio):
+    total_car = []
+    for sh in scene.objects:
+        if "mesh-car" in sh:
+            total_car.append(sh)
+    num_car = len(total_car)
+    if num_car == 0:
+        return scene
+    n = round(num_car*radio)
+    n = max(0,min(n,num_car))
+    remove_car = random.sample(total_car,n)
+    scene.edit(remove=remove_car)
     return scene
 
 def process_masks(rm_mask, building_mask, car_mask):

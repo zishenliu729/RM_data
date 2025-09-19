@@ -34,8 +34,18 @@ image_width = 256
 image_height = 256
 cam =  Camera(position=[-14,35,450], look_at=[-14,35,0])
 for idx in range(1,num_scenes+1):
-    scene = load_scene(f"dataset/scenes/scene_{idx}/scene_{idx}.xml",merge_shapes=False)
-    # Configure a transmitter that is located at the front of "car_2"
+    path =f"dataset/scenes/scene_{idx}/scene_{idx}.xml"
+    scene = load_scene(path,merge_shapes=False)
+    scene.file_path = path
+    # scene_nocar = load_scene(f"dataset/scenes/scene_{idx}/scene_{idx}.xml",merge_shapes=False)
+    # #2. Render the scene geometry.
+    # for sh in scene_nocar.objects:
+    #     if "mesh-car" in sh:
+    #         scene_nocar.edit(remove=sh)
+
+            
+  
+    
     scene.add(Transmitter("tx", position=[4,18,1.5], orientation=[np.pi,0,0]))
     scene.tx_array = PlanarArray(num_rows=1, num_cols=1, pattern="tr38901", polarization="V")
     scene.rx_array = scene.tx_array
@@ -88,12 +98,13 @@ for idx in range(1,num_scenes+1):
         
         # util.gray_generate(rm,building_mask,car_mask,metric="path_gain",file_name=f"dataset/path_gain/path_gain_{idx}/path_gain_{i}.png")
         util.viridis_generate(rm,building_mask,car_mask,tx_mask,metric="path_gain",file_name=f"dataset/path_gain/path_gain_{idx}/path_gain_v_{i}.png")
-        scene.render_to_file(camera=cam,  filename=f"dataset/visual/visual_{idx}/path_gain_visual_{i}.png", radio_map=rm,
+        scene.render_to_file(camera=cam, filename=f"dataset/visual/visual_{idx}/path_gain_visual_{i}.png", radio_map=rm,
                         resolution=(1024,1024),
                     num_samples=1024,
                     rm_vmin=-140)
         
-        scene = util.cars_movement(scene, displacement_vec)
+        # scene = util.cars_movement(scene, displacement_vec)
+        scene = util.cars_desity_change(scene, radio=0.3)
         
         
 
