@@ -55,6 +55,10 @@ def cars_movement(scene,displacement_vec):
 
     return scene
 
+def tx_movement(scene,move_vec):
+    scene.get("tx").position += move_vec
+    return scene
+
 def cars_desity_change(scene,radio):
     total_car = []
     for sh in scene.objects:
