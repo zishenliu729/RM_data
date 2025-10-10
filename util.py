@@ -59,6 +59,43 @@ def tx_movement(scene,move_vec):
     scene.get("tx").position += move_vec
     return scene
 
+def people_movement(scene,move_vec):
+    scene.get(f"立方体").position += move_vec
+    return scene
+
+# def people_movement(scene,move_vec):
+#     j= 1
+#     formatted_num = f"{j:03d}"
+#     a = scene.get(f"people.{formatted_num}")
+
+#     while a is not None:
+
+#         # Compute and render a coverage map at 0.5m above the ground
+            
+
+#         j += 1
+#         formatted_num = f"{j:03d}"
+#         a = scene.get(f"people.{formatted_num}")
+
+#         if a != None:
+#             scene.get(f"people.{formatted_num}").position += move_vec["x_p"]
+#     return scene
+
+def people_random_movement(scene):
+    j= 1
+    formatted_num = f"{j:03d}"
+    a = scene.get(f"people_{formatted_num}")
+    while a is not None:
+
+        # Compute and render a coverage map at 0.5m above the ground
+        j += 1
+        formatted_num = f"{j:03d}"
+        a = scene.get(f"people_{formatted_num}")
+        if a != None:
+            scene.get(f"people_{formatted_num}").position += [np.random.uniform(-1,1),np.random.uniform(-1,1),0]
+    # scene.compile()
+    return scene
+
 def cars_desity_change(scene,radio):
     total_car = []
     for sh in scene.objects:
@@ -99,8 +136,8 @@ def process_masks(rm_mask, building_mask, car_mask):
     return processed_mask3
 
 
-
-def process_masks_3channel(rm_mask, building_mask, car_mask,tx_mask):
+# def process_masks_3channel(rm_mask, building_mask, car_mask,tx_mask):
+def process_masks_3channel(rm_mask, building_mask,tx_mask):
     """
     处理三张mask图像：使mask3在mask1或mask2为1的位置均为0
     
@@ -119,17 +156,17 @@ def process_masks_3channel(rm_mask, building_mask, car_mask,tx_mask):
     # 步骤2：将mask3中上述位置设为0
     processed_mask3 = rm_mask.copy()  # 避免修改原数组
     building_bool = (building_mask == 1)  # 形状 (h, w)，True表示建筑物位置
-    car_bool = (car_mask == 1)            # 车辆位置
+    # car_bool = (car_mask == 1)            # 车辆位置
     tx_bool = (tx_mask == 1)  
     processed_mask3[building_bool] = [255, 128, 0]  # 符合条件的位置强制设为0
-    processed_mask3[car_bool] = [0, 255, 255]
+    # processed_mask3[car_bool] = [0, 255, 255]
     processed_mask3[tx_bool] = [255,0,0]
      # 将mask3中上述位置设为0
     
     return processed_mask3
 
-def gray_generate(radio_map,building_mask,car_mask,metric,file_name,db_scale: bool = True):
-    
+# def gray_generate(radio_map,building_mask,car_mask,metric,file_name,db_scale: bool = True):
+def gray_generate(radio_map,building_mask,metric,file_name,db_scale: bool = True):    
     rm_real = radio_map.path_gain.numpy().squeeze(axis=0)
     if metric=="rss" and db_scale:
         rm_values *= 1000
@@ -154,10 +191,11 @@ def gray_generate(radio_map,building_mask,car_mask,metric,file_name,db_scale: bo
     texture_uint8 = (texture * 255).astype(np.uint8)
     texture_single = texture_uint8[..., 0] 
     
-    texture_final = process_masks(texture_single, building_mask, car_mask)
+    texture_final = process_masks(texture_single, building_mask)
     return plt.imsave(file_name, texture_final, cmap='gray')
 
-def viridis_generate(radio_map,building_mask,car_mask,tx_mask,metric,file_name,db_scale: bool = True):
+# def viridis_generate(radio_map,building_mask,car_mask,tx_mask,metric,file_name,db_scale: bool = True):
+def viridis_generate(radio_map,building_mask,tx_mask,metric,file_name,db_scale: bool = True):
     
     rm_real = radio_map.path_gain.numpy().squeeze(axis=0)
     if metric=="rss" and db_scale:
@@ -183,7 +221,8 @@ def viridis_generate(radio_map,building_mask,car_mask,tx_mask,metric,file_name,d
     texture_uint8 = (texture * 255).astype(np.uint8)
     texture_single = texture_uint8[..., :3] 
     
-    texture_final = process_masks_3channel(texture_single, building_mask, car_mask,tx_mask)
+    # texture_final = process_masks_3channel(texture_single, building_mask, car_mask,tx_mask)
+    texture_final = process_masks_3channel(texture_single, building_mask, tx_mask)
     return plt.imsave(file_name, texture_final)
 
 def ground_3d_to_topview_pixel(scene, ground_vertices, image_width, image_height):

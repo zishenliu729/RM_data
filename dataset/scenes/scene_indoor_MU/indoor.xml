@@ -1,0 +1,541 @@
+<scene version="2.1.0">
+
+<!-- Defaults, these can be set via the command line: -Darg=value -->
+
+	<default name="spp" value="8192"/>
+	<default name="resx" value="1280"/>
+	<default name="resy" value="720"/>
+
+<!-- Camera and Rendering Parameters -->
+
+	<integrator type="path" id="elm__0" name="elm__0">
+		<integer name="max_depth" value="12"/>
+	</integrator>
+	<sensor type="perspective" id="camera_0_0" name="camera_0_0">
+		<string name="fov_axis" value="x"/>
+		<float name="fov" value="35.489342"/>
+		<float name="principal_point_offset_x" value="0.000000"/>
+		<float name="principal_point_offset_y" value="-0.000000"/>
+		<float name="near_clip" value="0.100000"/>
+		<float name="far_clip" value="10000.000000"/>
+		<transform name="to_world">
+			<rotate x="1" angle="180.00000500895632"/>
+			<rotate y="1" angle="5.008956130975331e-06"/>
+			<rotate z="1" angle="180.00000500895632"/>
+			<translate value="0.531344 11.000000 61.512383"/>
+		</transform>
+		<sampler type="independent" name="sampler">
+			<integer name="sample_count" value="$spp"/>
+		</sampler>
+		<film type="hdrfilm" name="film">
+			<integer name="width" value="$resx"/>
+			<integer name="height" value="$resy"/>
+		</film>
+	</sensor>
+	<sensor type="perspective" id="camera_0_1" name="camera_0_1">
+		<string name="fov_axis" value="x"/>
+		<float name="fov" value="35.489342"/>
+		<float name="principal_point_offset_x" value="0.000000"/>
+		<float name="principal_point_offset_y" value="-0.000000"/>
+		<float name="near_clip" value="0.100000"/>
+		<float name="far_clip" value="10000.000000"/>
+		<transform name="to_world">
+			<rotate x="1" angle="180.00000500895632"/>
+			<rotate y="1" angle="5.008956130975331e-06"/>
+			<rotate z="1" angle="180.00000500895632"/>
+			<translate value="0.606344 11.000000 61.512383"/>
+		</transform>
+		<sampler type="independent" name="sampler">
+			<integer name="sample_count" value="$spp"/>
+		</sampler>
+		<film type="hdrfilm" name="film">
+			<integer name="width" value="$resx"/>
+			<integer name="height" value="$resy"/>
+		</film>
+	</sensor>
+
+<!-- Materials -->
+
+	<bsdf type="diffuse" id="mat-itu_concrete" name="mat-itu_concrete">
+		<rgb value="1.000000 0.000000 0.300000" name="reflectance"/>
+	</bsdf>
+	<bsdf type="diffuse" id="mat-itu_metal" name="mat-itu_metal">
+		<rgb value="1.000000 0.000000 0.300000" name="reflectance"/>
+	</bsdf>
+	<bsdf type="twosided" id="mat-itu_chipboard" name="mat-itu_chipboard">
+		<bsdf type="diffuse" name="bsdf">
+			<rgb value="0.800000 0.800000 0.800000" name="reflectance"/>
+		</bsdf>
+	</bsdf>
+	<bsdf type="twosided" id="mat-itu_wood" name="mat-itu_wood">
+		<bsdf type="diffuse" name="bsdf">
+			<rgb value="0.800000 0.800000 0.800000" name="reflectance"/>
+		</bsdf>
+	</bsdf>
+	<bsdf type="dielectric" id="mat-itu_glass" name="mat-itu_glass">
+		<float name="int_ior" value="1.500000"/>
+		<rgb value="0.800000 0.800000 0.800000" name="specular_transmittance"/>
+	</bsdf>
+	<bsdf type="twosided" id="mat-itu_marble" name="mat-itu_marble">
+		<bsdf type="diffuse" name="bsdf">
+			<rgb value="0.800000 0.800000 0.800000" name="reflectance"/>
+		</bsdf>
+	</bsdf>
+	<bsdf type="diffuse" id="mat-itu_plasterboard" name="mat-itu_plasterboard">
+		<rgb value="1.000000 0.000000 0.300000" name="reflectance"/>
+	</bsdf>
+	<bsdf type="twosided" id="mat-itu_medium_dry_ground" name="mat-itu_medium_dry_ground">
+		<bsdf type="diffuse" name="bsdf">
+			<rgb value="0.800000 0.800000 0.800000" name="reflectance"/>
+		</bsdf>
+	</bsdf>
+
+<!-- Emitters -->
+
+
+<!-- Shapes -->
+
+	<shape type="ply" id="mesh-face" name="mesh-face">
+		<string name="filename" value="meshes/face.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-people_001" name="mesh-people_001">
+		<string name="filename" value="meshes/people_001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-people_002" name="mesh-people_002">
+		<string name="filename" value="meshes/people_002.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-people_003" name="mesh-people_003">
+		<string name="filename" value="meshes/people_003.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-people_004" name="mesh-people_004">
+		<string name="filename" value="meshes/people_004.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-people_005" name="mesh-people_005">
+		<string name="filename" value="meshes/people_005.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-GlassPanelDoorFactory_430087__spawn_asset_3_-itu_metal" name="mesh-GlassPanelDoorFactory_430087__spawn_asset_3_-itu_metal">
+		<string name="filename" value="meshes/GlassPanelDoorFactory_430087__spawn_asset_3_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-GlassPanelDoorFactory_430087__spawn_asset_3_-itu_chipboard" name="mesh-GlassPanelDoorFactory_430087__spawn_asset_3_-itu_chipboard">
+		<string name="filename" value="meshes/GlassPanelDoorFactory_430087__spawn_asset_3_-itu_chipboard.ply"/>
+		<ref id="mat-itu_chipboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-GlassPanelDoorFactory_430087__spawn_asset_5_-itu_metal" name="mesh-GlassPanelDoorFactory_430087__spawn_asset_5_-itu_metal">
+		<string name="filename" value="meshes/GlassPanelDoorFactory_430087__spawn_asset_5_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-GlassPanelDoorFactory_430087__spawn_asset_5_-itu_chipboard" name="mesh-GlassPanelDoorFactory_430087__spawn_asset_5_-itu_chipboard">
+		<string name="filename" value="meshes/GlassPanelDoorFactory_430087__spawn_asset_5_-itu_chipboard.ply"/>
+		<ref id="mat-itu_chipboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_8692110__spawn_asset_4_-itu_metal" name="mesh-PanelDoorFactory_8692110__spawn_asset_4_-itu_metal">
+		<string name="filename" value="meshes/PanelDoorFactory_8692110__spawn_asset_4_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_8692110__spawn_asset_4_-itu_wood" name="mesh-PanelDoorFactory_8692110__spawn_asset_4_-itu_wood">
+		<string name="filename" value="meshes/PanelDoorFactory_8692110__spawn_asset_4_-itu_wood.ply"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_8692110__spawn_asset_4_-itu_wood-001" name="mesh-PanelDoorFactory_8692110__spawn_asset_4_-itu_wood-001">
+		<string name="filename" value="meshes/PanelDoorFactory_8692110__spawn_asset_4_-itu_wood-001.ply"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_8692110__spawn_asset_6_-itu_metal" name="mesh-PanelDoorFactory_8692110__spawn_asset_6_-itu_metal">
+		<string name="filename" value="meshes/PanelDoorFactory_8692110__spawn_asset_6_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_8692110__spawn_asset_6_-itu_wood" name="mesh-PanelDoorFactory_8692110__spawn_asset_6_-itu_wood">
+		<string name="filename" value="meshes/PanelDoorFactory_8692110__spawn_asset_6_-itu_wood.ply"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_8692110__spawn_asset_6_-itu_wood-001" name="mesh-PanelDoorFactory_8692110__spawn_asset_6_-itu_wood-001">
+		<string name="filename" value="meshes/PanelDoorFactory_8692110__spawn_asset_6_-itu_wood-001.ply"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_0_-itu_metal" name="mesh-PanelDoorFactory_3912436__spawn_asset_0_-itu_metal">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_0_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_0_-itu_metal-001" name="mesh-PanelDoorFactory_3912436__spawn_asset_0_-itu_metal-001">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_0_-itu_metal-001.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_1_-itu_metal" name="mesh-PanelDoorFactory_3912436__spawn_asset_1_-itu_metal">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_1_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_1_-itu_metal-001" name="mesh-PanelDoorFactory_3912436__spawn_asset_1_-itu_metal-001">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_1_-itu_metal-001.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_2_-itu_metal" name="mesh-PanelDoorFactory_3912436__spawn_asset_2_-itu_metal">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_2_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_2_-itu_metal-001" name="mesh-PanelDoorFactory_3912436__spawn_asset_2_-itu_metal-001">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_2_-itu_metal-001.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_7_-itu_metal" name="mesh-PanelDoorFactory_3912436__spawn_asset_7_-itu_metal">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_7_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_7_-itu_metal-001" name="mesh-PanelDoorFactory_3912436__spawn_asset_7_-itu_metal-001">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_7_-itu_metal-001.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_8_-itu_metal" name="mesh-PanelDoorFactory_3912436__spawn_asset_8_-itu_metal">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_8_-itu_metal.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-PanelDoorFactory_3912436__spawn_asset_8_-itu_metal-001" name="mesh-PanelDoorFactory_3912436__spawn_asset_8_-itu_metal-001">
+		<string name="filename" value="meshes/PanelDoorFactory_3912436__spawn_asset_8_-itu_metal-001.ply"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_0_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_0_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_0_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_0_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_0_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_0_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_1_" name="mesh-WindowFactory_65271__spawn_asset_1_">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_1_.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_2_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_2_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_2_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_2_-itu_chipboard" name="mesh-WindowFactory_65271__spawn_asset_2_-itu_chipboard">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_2_-itu_chipboard.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_chipboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_2_-itu_metal" name="mesh-WindowFactory_65271__spawn_asset_2_-itu_metal">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_2_-itu_metal.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_2_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_2_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_2_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_3_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_3_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_3_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_3_-itu_chipboard" name="mesh-WindowFactory_65271__spawn_asset_3_-itu_chipboard">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_3_-itu_chipboard.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_chipboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_3_-itu_metal" name="mesh-WindowFactory_65271__spawn_asset_3_-itu_metal">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_3_-itu_metal.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_3_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_3_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_3_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_4_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_4_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_4_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_4_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_4_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_4_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_5_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_5_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_5_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_5_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_5_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_5_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_6_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_6_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_6_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_6_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_6_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_6_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_7_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_7_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_7_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_7_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_7_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_7_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_8_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_8_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_8_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_8_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_8_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_8_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_9_" name="mesh-WindowFactory_65271__spawn_asset_9_">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_9_.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_10_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_10_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_10_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_10_-itu_wood-001" name="mesh-WindowFactory_65271__spawn_asset_10_-itu_wood-001">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_10_-itu_wood-001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_10_-itu_metal" name="mesh-WindowFactory_65271__spawn_asset_10_-itu_metal">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_10_-itu_metal.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_10_-itu_glass" name="mesh-WindowFactory_65271__spawn_asset_10_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_10_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_11_-itu_wood" name="mesh-WindowFactory_65271__spawn_asset_11_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_11_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_11_-itu_chipboard" name="mesh-WindowFactory_65271__spawn_asset_11_-itu_chipboard">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_11_-itu_chipboard.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_chipboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_65271__spawn_asset_11_-itu_metal" name="mesh-WindowFactory_65271__spawn_asset_11_-itu_metal">
+		<string name="filename" value="meshes/WindowFactory_65271__spawn_asset_11_-itu_metal.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_12_-itu_wood" name="mesh-WindowFactory_4650__spawn_asset_12_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_12_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_12_-itu_glass" name="mesh-WindowFactory_4650__spawn_asset_12_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_12_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_12_-itu_metal" name="mesh-WindowFactory_4650__spawn_asset_12_-itu_metal">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_12_-itu_metal.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_metal" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_12_-itu_glass-001" name="mesh-WindowFactory_4650__spawn_asset_12_-itu_glass-001">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_12_-itu_glass-001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_13_-itu_wood" name="mesh-WindowFactory_4650__spawn_asset_13_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_13_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_13_-itu_glass" name="mesh-WindowFactory_4650__spawn_asset_13_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_13_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_14_-itu_wood" name="mesh-WindowFactory_4650__spawn_asset_14_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_14_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_14_-itu_glass" name="mesh-WindowFactory_4650__spawn_asset_14_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_14_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_15_-itu_wood" name="mesh-WindowFactory_4650__spawn_asset_15_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_15_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_15_-itu_glass" name="mesh-WindowFactory_4650__spawn_asset_15_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_15_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_16_-itu_wood" name="mesh-WindowFactory_4650__spawn_asset_16_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_16_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_16_-itu_glass" name="mesh-WindowFactory_4650__spawn_asset_16_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_16_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_17_-itu_wood" name="mesh-WindowFactory_4650__spawn_asset_17_-itu_wood">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_17_-itu_wood.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-WindowFactory_4650__spawn_asset_17_-itu_glass" name="mesh-WindowFactory_4650__spawn_asset_17_-itu_glass">
+		<string name="filename" value="meshes/WindowFactory_4650__spawn_asset_17_-itu_glass.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_glass" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-living-room_0_0_wall-itu_marble" name="mesh-living-room_0_0_wall-itu_marble">
+		<string name="filename" value="meshes/living-room_0_0_wall-itu_marble.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-living-room_0_0_wall-itu_plasterboard" name="mesh-living-room_0_0_wall-itu_plasterboard">
+		<string name="filename" value="meshes/living-room_0_0_wall-itu_plasterboard.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-balcony_0_0_wall" name="mesh-balcony_0_0_wall">
+		<string name="filename" value="meshes/balcony_0_0_wall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bedroom_0_0_wall" name="mesh-bedroom_0_0_wall">
+		<string name="filename" value="meshes/bedroom_0_0_wall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bedroom_0_1_wall-itu_medium_dry_ground" name="mesh-bedroom_0_1_wall-itu_medium_dry_ground">
+		<string name="filename" value="meshes/bedroom_0_1_wall-itu_medium_dry_ground.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_medium_dry_ground" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bedroom_0_1_wall-itu_plasterboard" name="mesh-bedroom_0_1_wall-itu_plasterboard">
+		<string name="filename" value="meshes/bedroom_0_1_wall-itu_plasterboard.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-dining-room_0_0_wall" name="mesh-dining-room_0_0_wall">
+		<string name="filename" value="meshes/dining-room_0_0_wall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-kitchen_0_0_wall" name="mesh-kitchen_0_0_wall">
+		<string name="filename" value="meshes/kitchen_0_0_wall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bathroom_0_0_wall" name="mesh-bathroom_0_0_wall">
+		<string name="filename" value="meshes/bathroom_0_0_wall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-closet_0_0_wall-itu_plasterboard" name="mesh-closet_0_0_wall-itu_plasterboard">
+		<string name="filename" value="meshes/closet_0_0_wall-itu_plasterboard.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-closet_0_0_wall-itu_plasterboard-001" name="mesh-closet_0_0_wall-itu_plasterboard-001">
+		<string name="filename" value="meshes/closet_0_0_wall-itu_plasterboard-001.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bathroom_0_1_wall" name="mesh-bathroom_0_1_wall">
+		<string name="filename" value="meshes/bathroom_0_1_wall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-closet_0_1_wall" name="mesh-closet_0_1_wall">
+		<string name="filename" value="meshes/closet_0_1_wall.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_plasterboard" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-living-room_0_0_floor" name="mesh-living-room_0_0_floor">
+		<string name="filename" value="meshes/living-room_0_0_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-balcony_0_0_floor" name="mesh-balcony_0_0_floor">
+		<string name="filename" value="meshes/balcony_0_0_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bedroom_0_0_floor" name="mesh-bedroom_0_0_floor">
+		<string name="filename" value="meshes/bedroom_0_0_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bedroom_0_1_floor" name="mesh-bedroom_0_1_floor">
+		<string name="filename" value="meshes/bedroom_0_1_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-dining-room_0_0_floor" name="mesh-dining-room_0_0_floor">
+		<string name="filename" value="meshes/dining-room_0_0_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-kitchen_0_0_floor" name="mesh-kitchen_0_0_floor">
+		<string name="filename" value="meshes/kitchen_0_0_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_concrete" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bathroom_0_0_floor" name="mesh-bathroom_0_0_floor">
+		<string name="filename" value="meshes/bathroom_0_0_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_wood" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-closet_0_0_floor" name="mesh-closet_0_0_floor">
+		<string name="filename" value="meshes/closet_0_0_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-bathroom_0_1_floor" name="mesh-bathroom_0_1_floor">
+		<string name="filename" value="meshes/bathroom_0_1_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+	<shape type="ply" id="mesh-closet_0_1_floor" name="mesh-closet_0_1_floor">
+		<string name="filename" value="meshes/closet_0_1_floor.ply"/>
+		<boolean name="face_normals" value="true"/>
+		<ref id="mat-itu_marble" name="bsdf"/>
+	</shape>
+
+<!-- Volumes -->
+
+</scene>
